@@ -14,57 +14,42 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.superbiz;
+package br.com.weedit.polatti;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.ejb.Singleton;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
-@XmlRootElement
-public class Color {
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-    private String name;
-    private int r;
-    private int g;
-    private int b;
+@Path("/color")
+@Singleton
+public class ColorService {
 
-    public Color() {
+    private String color;
+
+    public ColorService() {
+        this.color = "white";
     }
 
-    public Color(String name, int r, int g, int b) {
-        this.name = name;
-        this.r = r;
-        this.g = g;
-        this.b = b;
+    @GET
+    public String getColor() {
+        return color;
     }
 
-    public String getName() {
-        return name;
+    @Path("{color}")
+    @POST
+    public void setColor(@PathParam("color") String color) {
+        this.color = color;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getR() {
-        return r;
-    }
-
-    public void setR(int r) {
-        this.r = r;
-    }
-
-    public int getG() {
-        return g;
-    }
-
-    public void setG(int g) {
-        this.g = g;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public void setB(int b) {
-        this.b = b;
+    @Path("object")
+    @GET
+    @Produces({ APPLICATION_JSON })
+    public Color getColorObject() {
+        return new Color("orange", 0xE7, 0x71, 0x00);
     }
 }

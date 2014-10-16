@@ -14,8 +14,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.superbiz;
+package br.com.weedit.polatti;
 
+import br.com.weedit.polatti.Color;
+import br.com.weedit.polatti.ColorService;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
